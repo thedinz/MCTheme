@@ -71,9 +71,10 @@ input[type="submit"]{
   width: 100% !important;
   min-height: 56px !important;
   height: auto !important;
+  box-sizing: border-box !important;
 
   margin: 0 !important;
-  padding: 0 16px !important;
+  padding: 0 20px 0 16px !important;
 
   display: flex !important;
   align-items: center !important;
@@ -90,6 +91,9 @@ input[type="submit"]{
 }
 
 #masthead .title{
+  display: flex !important;
+  align-items: center !important;
+  min-height: 56px !important;
   color: var(--text-light) !important;
   font-size: 16px !important;
   font-weight: 650 !important;
@@ -101,12 +105,22 @@ input[type="submit"]{
   text-shadow: none !important;
 }
 
+#masthead .title img,
+#masthead .title svg,
+#masthead > img,
+#masthead > svg{
+  max-height: 30px !important;
+  width: auto !important;
+  vertical-align: middle !important;
+}
+
 #logoutControl{
   margin-left: auto !important;
   font-size: 13px !important;
   color: #a6adbb !important;
   white-space: nowrap !important;
   padding-left: 12px !important;
+  padding-right: 6px !important;
 }
 
 #masthead .LogoffLinkColor,
@@ -144,6 +158,12 @@ tbody tr td.g2t{
   border-bottom: 1px solid var(--card-border) !important;
   vertical-align: middle !important;
   transition: border-color .14s ease, box-shadow .14s ease;
+}
+
+/* Add breathing room between machine card rows without changing table semantics */
+table:has(td.e2t){
+  border-collapse: separate !important;
+  border-spacing: 0 8px !important;
 }
 
 /* First card segment: compact status column */
