@@ -69,7 +69,8 @@ input[type="submit"]{
 
 #masthead{
   width: 100% !important;
-  height: 56px !important;
+  min-height: 56px !important;
+  height: auto !important;
 
   margin: 0 !important;
   padding: 0 16px !important;
@@ -85,12 +86,14 @@ input[type="submit"]{
   border-radius: 0 !important;
 
   box-shadow: none !important;
+  overflow: visible !important;
 }
 
 #masthead .title{
   color: var(--text-light) !important;
   font-size: 16px !important;
   font-weight: 650 !important;
+  line-height: 1.25 !important;
   letter-spacing: -0.02em !important;
 
   margin: 0 !important;
@@ -102,6 +105,8 @@ input[type="submit"]{
   margin-left: auto !important;
   font-size: 13px !important;
   color: #a6adbb !important;
+  white-space: nowrap !important;
+  padding-left: 12px !important;
 }
 
 #masthead .LogoffLinkColor,
@@ -145,7 +150,6 @@ tbody tr td.g2t{
 tbody tr td[tabindex]{
   width: 26px !important;
   min-width: 26px !important;
-  max-width: 26px !important;
   padding-left: 8px !important;
   padding-right: 6px !important;
 
@@ -153,9 +157,7 @@ tbody tr td[tabindex]{
   border-top-left-radius: var(--radius) !important;
   border-bottom-left-radius: var(--radius) !important;
 
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
+  text-align: center !important;
 }
 
 /* Main name/content segment */
@@ -179,9 +181,8 @@ td.e2t > div:last-child{
 /* trailing table segments */
 td.g1t,
 td.g2t{
-  width: 8px !important;
-  min-width: 8px !important;
-  max-width: 8px !important;
+  width: auto !important;
+  min-width: 0 !important;
   padding-left: 0 !important;
   padding-right: 0 !important;
 }
