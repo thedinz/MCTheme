@@ -1,5 +1,5 @@
 /* =========================================================
-   MCTheme - Linear/Vercel-inspired MeshCentral theme
+   MCTheme - MeshCentral polished theme (layout-safe)
    ========================================================= */
 
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
@@ -9,7 +9,7 @@
    ========================================================= */
 :root {
   --mc-accent: #3b82f6;
-  --mc-accent-weak: rgba(59, 130, 246, 0.16);
+  --mc-accent-weak: rgba(59, 130, 246, 0.14);
   --mc-accent-border: rgba(59, 130, 246, 0.3);
 
   --mc-text-strong: #0f172a;
@@ -44,6 +44,7 @@
 
 /* =========================================================
    2) masthead
+   Safe scope: IDs/classes provided in source-of-truth DOM only.
    Targets: #masthead, .title, .title2, #notificationCount, #logoutControl
    ========================================================= */
 #masthead {
@@ -93,10 +94,12 @@
 }
 
 /* =========================================================
-   3) sidebar
-   Targets: #page_leftbar, .lbbutton, .lbbuttonsel2, .lbtg, LeftMenu IDs
+   3) sidebar recovery (priority #1)
+   IMPORTANT: Cosmetic-only; preserves native vertical stacking model.
+   Explicitly forces block behavior without introducing flex/grid.
    ========================================================= */
 #page_leftbar {
+  display: block !important; /* hard safety: vertical rail */
   width: 212px !important;
   min-width: 212px !important;
   background: #f8fafc !important;
@@ -107,11 +110,13 @@
 }
 
 #page_leftbar .lbtg {
+  display: block !important;
   margin: 0 !important;
   padding: 0 !important;
   width: 100% !important;
 }
 
+/* Safe selectors: all scoped to #page_leftbar so no global button impact. */
 #page_leftbar .lbbutton,
 #page_leftbar .lbbuttonsel2,
 #page_leftbar #LeftMenuMyDevices,
@@ -120,8 +125,8 @@
 #page_leftbar #LeftMenuMyFiles,
 #page_leftbar #LeftMenuMyUsers,
 #page_leftbar #LeftMenuMyServer {
+  display: block !important; /* hard safety: one-per-line */
   width: 100% !important;
-  display: block !important;
   box-sizing: border-box !important;
   margin: 0 0 6px 0 !important;
   padding: 8px 10px !important;
@@ -157,8 +162,9 @@
 }
 
 /* =========================================================
-   4) toolbar
-   Targets: #p1title, #devListToolbarSpan, #devListToolbar, view selectors
+   4) devices toolbar fix + modernize (priority #2)
+   Safe scope: only #devListToolbarSpan / #devListToolbar tree.
+   Keeps existing table flow; avoids forcing flex on unknown wrappers.
    ========================================================= */
 #p1title {
   color: var(--mc-text-strong) !important;
@@ -167,34 +173,31 @@
 }
 
 #devListToolbarSpan {
-  display: flex !important;
-  align-items: center !important;
-  flex-wrap: wrap !important;
-  gap: 10px !important;
+  display: block !important;
   margin: 0 0 14px 0 !important;
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
 }
 
-#devListToolbarSpan > table,
-#devListToolbarSpan > table > tbody > tr > td,
-#devListToolbarSpan > div {
+/* Normalize likely wrappers so "Sort / Group" doesn't render as a detached grey block. */
+#devListToolbar,
+#devListToolbar > table,
+#devListToolbar > table > tbody > tr > td,
+#devListToolbar > div,
+#devListToolbar > span {
   background: transparent !important;
-  border: 0 !important;
   box-shadow: none !important;
 }
 
 #devListToolbar {
-  display: flex !important;
-  align-items: center !important;
-  flex-wrap: wrap !important;
-  gap: 8px !important;
   padding: 8px !important;
   border: 1px solid var(--mc-border-soft) !important;
   border-radius: 12px !important;
   background: var(--mc-bg-surface) !important;
   box-shadow: var(--mc-shadow-sm) !important;
+  white-space: nowrap !important;
 }
 
+/* Keep row cohesion by standardizing controls, but only inside toolbar scope. */
 #devListToolbar #SelectAllButton,
 #devListToolbar #GroupActionButton,
 #devListToolbar #SearchInput,
@@ -212,6 +215,7 @@
 #devViewButton4,
 #devViewButton5 {
   height: var(--mc-control-h) !important;
+  line-height: calc(var(--mc-control-h) - 2px) !important;
   box-sizing: border-box !important;
   border: 1px solid var(--mc-border-strong) !important;
   border-radius: var(--mc-radius-md) !important;
@@ -219,6 +223,8 @@
   color: var(--mc-text-strong) !important;
   font-size: 13px !important;
   font-weight: 500 !important;
+  vertical-align: middle !important;
+  margin: 0 6px 0 0 !important;
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
 }
 
@@ -249,6 +255,8 @@
   width: 16px !important;
   min-width: 16px !important;
   height: 16px !important;
+  vertical-align: middle !important;
+  margin: 0 8px 0 2px !important;
   border-radius: 4px !important;
   border: 1px solid var(--mc-border-strong) !important;
 }
@@ -281,8 +289,8 @@
 }
 
 /* =========================================================
-   5) device cards
-   Targets: #xdevices, div[name="xxdevice1"], table#devs + g1t/e2t/g2t/e1t
+   5) device tiles (priority #3)
+   HARD RULE: all tile styling is explicitly scoped under #xdevices.
    ========================================================= */
 #xdevices {
   padding: 2px 0 12px 0 !important;
@@ -322,8 +330,8 @@
 }
 
 #xdevices div[name="xxdevice1"] table#devs .g1t {
-  width: 38px !important;
-  min-width: 38px !important;
+  width: 46px !important;
+  min-width: 46px !important;
   padding-left: 12px !important;
   padding-right: 8px !important;
   text-align: center !important;
@@ -352,16 +360,18 @@
 }
 
 #xdevices div[name="xxdevice1"] table#devs input[type="checkbox"] {
-  margin: 0 !important;
+  margin: 0 6px 0 0 !important;
   vertical-align: middle !important;
 }
 
+/* Known status indicators (i2 variants) */
 #xdevices div[name="xxdevice1"] table#devs div.i2,
 #xdevices div[name="xxdevice1"] table#devs div.i2.gray,
 #xdevices div[name="xxdevice1"] table#devs div.i2.green,
 #xdevices div[name="xxdevice1"] table#devs div.i2.red,
 #xdevices div[name="xxdevice1"] table#devs div.i2.orange,
 #xdevices div[name="xxdevice1"] table#devs div.i2.blue {
+  display: inline-block !important;
   width: 10px !important;
   min-width: 10px !important;
   height: 10px !important;
@@ -369,6 +379,13 @@
   border-radius: 999px !important;
   border: 1px solid #cbd5e1 !important;
   box-sizing: border-box !important;
+  vertical-align: middle !important;
+}
+
+/* Additional resilience: if MeshCentral emits other status icon classes, align them only. */
+#xdevices div[name="xxdevice1"] table#devs .g1t > div[class^="i"],
+#xdevices div[name="xxdevice1"] table#devs .g1t > div[class*=" i"] {
+  vertical-align: middle !important;
 }
 
 #xdevices div[name="xxdevice1"] table#devs div.i2.gray { background: #cbd5e1 !important; }
@@ -382,5 +399,8 @@
 #xdevices div[name="xxdevice1"] table#devs .g2t img {
   max-width: none !important;
   max-height: none !important;
+  width: auto !important;
+  height: auto !important;
   object-fit: contain !important;
+  vertical-align: middle !important;
 }
