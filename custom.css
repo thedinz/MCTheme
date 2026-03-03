@@ -1,67 +1,57 @@
 /* =========================================================
-   MCTheme - MeshCentral Modern SaaS Theme (CSS-only)
+   MCTheme - Linear/Vercel-inspired MeshCentral theme
+   Scoped to uploaded DOM targets only
    ========================================================= */
 
-/* ---------- Font ---------- */
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
 
-/* ---------- Design tokens ---------- */
 :root {
-  --mc-accent: #4f7cff;
-  --mc-accent-weak: rgba(79, 124, 255, 0.18);
-  --mc-accent-border: rgba(79, 124, 255, 0.36);
+  --mc-accent: #4f46e5;
+  --mc-accent-weak: rgba(79, 70, 229, 0.16);
+  --mc-accent-border: rgba(79, 70, 229, 0.34);
 
   --mc-text-strong: #0f172a;
   --mc-text: #334155;
   --mc-text-muted: #64748b;
-  --mc-text-on-dark: #e6ebf5;
+  --mc-text-on-dark: #e5e7eb;
 
-  --mc-bg-page: #f7f9fc;
+  --mc-bg-page: #f8fafc;
   --mc-bg-surface: #ffffff;
-  --mc-bg-subtle: #f8fafc;
-  --mc-bg-subtle-hover: #f1f5f9;
+  --mc-bg-subtle: #f1f5f9;
+  --mc-bg-subtle-hover: #e2e8f0;
 
-  --mc-border-soft: #e6eaf1;
-  --mc-border-strong: #d8dee9;
+  --mc-border-soft: #e2e8f0;
+  --mc-border-strong: #cbd5e1;
 
-  --mc-header-bg: #0f1217;
-  --mc-header-border: #212938;
+  --mc-header-bg: #0b0d12;
+  --mc-header-border: #1f2937;
 
-  --mc-shadow-hover: 0 8px 20px rgba(15, 23, 42, 0.08);
-  --mc-shadow-toolbar: 0 1px 2px rgba(15, 23, 42, 0.04);
+  --mc-shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
+  --mc-shadow-md: 0 10px 24px rgba(15, 23, 42, 0.08);
 
   --mc-radius-sm: 8px;
-  --mc-radius-md: 10px;
+  --mc-radius-md: 12px;
+  --mc-radius-lg: 14px;
   --mc-radius-pill: 999px;
 
-  /* Spacing scale: 8 / 12 / 16 / 24 */
   --mc-space-1: 8px;
   --mc-space-2: 12px;
   --mc-space-3: 16px;
-  --mc-space-4: 24px;
+  --mc-space-4: 20px;
 
   --mc-control-h: 34px;
 }
 
 /* =========================================================
-   Global-safe foundation
+   Page + type baseline (safe)
    ========================================================= */
 
 html,
 body {
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
-  letter-spacing: -0.01em;
-  color: var(--mc-text) !important;
   background: var(--mc-bg-page) !important;
-}
-
-a {
-  color: var(--mc-accent) !important;
-  text-decoration: none !important;
-}
-
-a:hover {
-  text-decoration: underline !important;
+  color: var(--mc-text) !important;
+  letter-spacing: -0.01em;
 }
 
 :focus {
@@ -73,329 +63,309 @@ a:hover {
 }
 
 /* =========================================================
-   Masthead (top bar)
+   Masthead targets: #masthead .title #notificationCount #logoutControl
    ========================================================= */
 
 #masthead {
-  width: 100% !important;
   min-height: 56px !important;
   height: auto !important;
-  box-sizing: border-box !important;
   margin: 0 !important;
-  padding: 0 var(--mc-space-3) 0 var(--mc-space-2) !important;
+  padding: 0 var(--mc-space-3) !important;
   display: flex !important;
   align-items: center !important;
   gap: var(--mc-space-2) !important;
   background: var(--mc-header-bg) !important;
-  background-image: none !important;
   border: 0 !important;
   border-bottom: 1px solid var(--mc-header-border) !important;
-  border-radius: 0 !important;
   box-shadow: none !important;
-  overflow: visible !important;
 }
 
 #masthead .title {
   display: flex !important;
   align-items: center !important;
   min-height: 56px !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  color: var(--mc-text-on-dark) !important;
-  font-size: 16px !important;
+  color: #f8fafc !important;
+  font-size: 15px !important;
   font-weight: 600 !important;
-  line-height: 1.2 !important;
   letter-spacing: -0.02em !important;
   text-shadow: none !important;
 }
 
-#masthead .title img,
-#masthead .title svg,
-#masthead > img,
-#masthead > svg {
-  max-height: 30px !important;
-  width: auto !important;
-  vertical-align: middle !important;
-}
-
-#logoutControl {
-  margin-left: auto !important;
-  padding-left: var(--mc-space-2) !important;
-  padding-right: 6px !important;
-  white-space: nowrap !important;
-  font-size: 13px !important;
-  color: #9ba8bd !important;
-}
-
-#masthead .LogoffLinkColor,
-#masthead .LogoffLinkColor a {
-  color: #9ba8bd !important;
-  text-decoration: none !important;
-}
-
-#masthead .LogoffLinkColor a:hover {
-  color: var(--mc-text-on-dark) !important;
-}
-
 #notificationCount {
+  margin-left: var(--mc-space-1) !important;
   border-radius: var(--mc-radius-pill) !important;
   border: 1px solid var(--mc-accent-border) !important;
   background: var(--mc-accent-weak) !important;
   color: var(--mc-text-on-dark) !important;
   font-weight: 600 !important;
-  padding: 4px 10px !important;
+  padding: 3px 10px !important;
+}
+
+#logoutControl {
+  margin-left: auto !important;
+  color: #94a3b8 !important;
+  font-size: 13px !important;
+}
+
+#logoutControl a,
+#logoutControl .LogoffLinkColor {
+  color: #94a3b8 !important;
+  text-decoration: none !important;
+}
+
+#logoutControl a:hover,
+#logoutControl .LogoffLinkColor:hover {
+  color: #e2e8f0 !important;
 }
 
 /* =========================================================
-   Typography hierarchy (safe, scoped)
+   Left sidebar targets: #page_leftbar .lbbutton .lbbuttonsel2 + known IDs
    ========================================================= */
 
-#p2header,
-#p3header,
-#p5header,
-#p13header,
-#MainTitle {
-  color: var(--mc-text-strong) !important;
-  font-weight: 600 !important;
-  letter-spacing: -0.015em !important;
-  text-shadow: none !important;
-}
-
-/* =========================================================
-   Device list cards (table-preserving)
-   Keep selectors narrow to avoid other MeshCentral tables.
-   ========================================================= */
-
-/* Breathing room between device rows while keeping table semantics */
-table:has(td.e2t) {
-  border-collapse: separate !important;
-  border-spacing: 0 var(--mc-space-1) !important;
-}
-
-/* Card segments */
-tbody tr td[tabindex],
-tbody tr td.e2t,
-tbody tr td.g1t,
-tbody tr td.g2t {
-  background: var(--mc-bg-surface) !important;
-  border-top: 1px solid var(--mc-border-soft) !important;
-  border-bottom: 1px solid var(--mc-border-soft) !important;
-  padding-top: var(--mc-space-2) !important;
-  padding-bottom: var(--mc-space-2) !important;
-  vertical-align: middle !important;
-  transition: border-color 0.16s ease, box-shadow 0.16s ease, background-color 0.16s ease;
-}
-
-/* Left segment: checkbox + status */
-tbody tr td[tabindex] {
-  width: 30px !important;
-  min-width: 30px !important;
-  padding-left: var(--mc-space-1) !important;
-  padding-right: var(--mc-space-1) !important;
-  border-left: 1px solid var(--mc-border-soft) !important;
-  border-top-left-radius: var(--mc-radius-md) !important;
-  border-bottom-left-radius: var(--mc-radius-md) !important;
-  text-align: center !important;
-}
-
-tbody tr td[tabindex] > div {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 6px !important;
-  min-height: 100% !important;
-}
-
-/* Main content segment */
-tbody tr td.e2t {
-  padding-left: var(--mc-space-2) !important;
-  padding-right: var(--mc-space-2) !important;
-}
-
-/* Device name text quality + truncation */
-td.e2t .e1t {
-  display: block !important;
-  max-width: 100% !important;
-  color: var(--mc-text-strong) !important;
-  font-size: 14px !important;
-  font-weight: 600 !important;
-  line-height: 1.3 !important;
-  white-space: nowrap !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-}
-
-/* Remove known empty spacer div that can inflate row height */
-td.e2t > div:last-child {
-  display: none !important;
-}
-
-/* Tail segments */
-td.g1t,
-td.g2t {
-  width: auto !important;
-  min-width: 0 !important;
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-}
-
-td.g2t {
+#page_leftbar {
+  background: #f8fafc !important;
   border-right: 1px solid var(--mc-border-soft) !important;
-  border-top-right-radius: var(--mc-radius-md) !important;
-  border-bottom-right-radius: var(--mc-radius-md) !important;
+  padding: var(--mc-space-2) !important;
 }
 
-/* Hover polish: subtle depth, no layout shift */
-tbody tr:hover td[tabindex],
-tbody tr:hover td.e2t,
-tbody tr:hover td.g1t,
-tbody tr:hover td.g2t {
-  background: var(--mc-bg-surface) !important;
-  border-color: var(--mc-border-strong) !important;
-  box-shadow: var(--mc-shadow-hover) !important;
+#page_leftbar .lbbutton,
+#page_leftbar .lbbuttonsel2,
+#page_leftbar #LeftMenuMyDevices,
+#page_leftbar #LeftMenuMyAccount,
+#page_leftbar #LeftMenuMyEvents,
+#page_leftbar #LeftMenuMyFiles,
+#page_leftbar #LeftMenuMyUsers,
+#page_leftbar #LeftMenuMyServer {
+  display: block !important;
+  border-radius: var(--mc-radius-md) !important;
+  border: 1px solid transparent !important;
+  margin-bottom: 6px !important;
+  padding: 8px 10px !important;
+  color: var(--mc-text) !important;
+  background: transparent !important;
+  transition: background-color 0.14s ease, border-color 0.14s ease, box-shadow 0.14s ease, transform 0.14s ease;
 }
 
-/* Status dot normalization (override MeshCentral inline dimensions) */
-div.i2,
-div.i2.gray,
-div.i2.green,
-div.i2.red,
-div.i2.orange,
-div.i2.blue {
-  width: 10px !important;
-  min-width: 10px !important;
-  max-width: 10px !important;
-  height: 10px !important;
-  min-height: 10px !important;
-  max-height: 10px !important;
-  margin: 0 !important;
-  border-radius: var(--mc-radius-pill) !important;
-  border: 1px solid #cfd8e4 !important;
-  box-sizing: border-box !important;
-  background: #e2e8f0 !important;
+#page_leftbar .lbbutton:hover,
+#page_leftbar #LeftMenuMyDevices:hover,
+#page_leftbar #LeftMenuMyAccount:hover,
+#page_leftbar #LeftMenuMyEvents:hover,
+#page_leftbar #LeftMenuMyFiles:hover,
+#page_leftbar #LeftMenuMyUsers:hover,
+#page_leftbar #LeftMenuMyServer:hover {
+  background: #eef2ff !important;
+  border-color: #dbe3ff !important;
+  color: var(--mc-text-strong) !important;
+  transform: translateY(-1px);
 }
 
-div.i2.gray {
-  background: #e2e8f0 !important;
-}
-
-div.i2.green {
-  background: #22c55e !important;
-  border-color: #16a34a !important;
-}
-
-div.i2.red {
-  background: #ef4444 !important;
-  border-color: #dc2626 !important;
-}
-
-div.i2.orange {
-  background: #f59e0b !important;
-  border-color: #d97706 !important;
-}
-
-div.i2.blue {
-  background: var(--mc-accent) !important;
-  border-color: var(--mc-accent) !important;
-}
-
-div.i2[style*="width"],
-div.i2[style*="height"] {
-  width: 10px !important;
-  height: 10px !important;
+#page_leftbar .lbbuttonsel2,
+#page_leftbar .lbbuttonsel2:hover {
+  background: #e0e7ff !important;
+  border-color: #c7d2fe !important;
+  color: #1e1b4b !important;
+  box-shadow: inset 0 0 0 1px rgba(99, 102, 241, 0.14) !important;
 }
 
 /* =========================================================
-   Control bars (Select/Group/Filter/Sort/view controls)
-   Scoped to known toolbar IDs.
+   Devices toolbar targets: #devListToolbarSpan #devListToolbar and controls
    ========================================================= */
 
-#p5toolbar,
-#p13toolbar {
+#devListToolbarSpan {
+  display: block !important;
+  margin: 0 0 var(--mc-space-3) 0 !important;
+}
+
+#devListToolbar {
   display: flex !important;
   flex-wrap: wrap !important;
   align-items: center !important;
   gap: var(--mc-space-1) !important;
-  margin-bottom: var(--mc-space-2) !important;
   padding: var(--mc-space-1) var(--mc-space-2) !important;
-  background: var(--mc-bg-subtle) !important;
+  background: var(--mc-bg-surface) !important;
   border: 1px solid var(--mc-border-soft) !important;
-  border-radius: var(--mc-radius-md) !important;
-  box-shadow: var(--mc-shadow-toolbar) !important;
+  border-radius: var(--mc-radius-pill) !important;
+  box-shadow: var(--mc-shadow-sm) !important;
 }
 
-#p5toolbar select,
-#p13toolbar select,
-#p5toolbar input,
-#p13toolbar input,
-#p5toolbar button,
-#p13toolbar button,
-#p5toolbar input[type="button"],
-#p13toolbar input[type="button"],
-#p5toolbar input[type="submit"],
-#p13toolbar input[type="submit"] {
+#devListToolbar #SelectAllButton,
+#devListToolbar #GroupActionButton,
+#devListToolbar #SearchInput,
+#devListToolbar #DevFilterSelect,
+#devListToolbar #RealNameCheckBox,
+#devListToolbar input,
+#devListToolbar select,
+#devListToolbar button {
   height: var(--mc-control-h) !important;
-  border-radius: var(--mc-radius-sm) !important;
+  box-sizing: border-box !important;
+  border-radius: var(--mc-radius-pill) !important;
   border: 1px solid var(--mc-border-strong) !important;
-  background: var(--mc-bg-surface) !important;
+  background: #ffffff !important;
   color: var(--mc-text-strong) !important;
   font-size: 13px !important;
   font-weight: 500 !important;
-  padding: 0 10px !important;
-  box-sizing: border-box !important;
 }
 
-#p5toolbar input::placeholder,
-#p13toolbar input::placeholder {
+#devListToolbar #SelectAllButton,
+#devListToolbar #GroupActionButton,
+#devListToolbar button,
+#devListToolbar input[type="button"],
+#devListToolbar input[type="submit"] {
+  padding: 0 12px !important;
+}
+
+#devListToolbar #SearchInput {
+  min-width: 220px !important;
+  padding: 0 12px !important;
+}
+
+#devListToolbar #SearchInput::placeholder {
   color: var(--mc-text-muted) !important;
 }
 
-#p5toolbar button:hover,
-#p13toolbar button:hover,
-#p5toolbar input[type="button"]:hover,
-#p13toolbar input[type="button"]:hover,
-#p5toolbar input[type="submit"]:hover,
-#p13toolbar input[type="submit"]:hover {
-  background: var(--mc-bg-subtle-hover) !important;
-  border-color: #c9d3e3 !important;
+#devListToolbar #DevFilterSelect,
+#devListToolbar select {
+  min-width: 150px !important;
+  padding: 0 30px 0 10px !important;
 }
 
-#p5toolbar select:focus-visible,
-#p13toolbar select:focus-visible,
-#p5toolbar input:focus-visible,
-#p13toolbar input:focus-visible,
-#p5toolbar button:focus-visible,
-#p13toolbar button:focus-visible {
+#devListToolbar #RealNameCheckBox {
+  width: 16px !important;
+  min-width: 16px !important;
+  height: 16px !important;
+  border-radius: 4px !important;
+  padding: 0 !important;
+}
+
+#devListToolbar #SelectAllButton:hover,
+#devListToolbar #GroupActionButton:hover,
+#devListToolbar button:hover,
+#devListToolbar input[type="button"]:hover,
+#devListToolbar input[type="submit"]:hover {
+  background: var(--mc-bg-subtle) !important;
+  border-color: #b9c5d6 !important;
+}
+
+#devListToolbar #SearchInput:focus-visible,
+#devListToolbar #DevFilterSelect:focus-visible,
+#devListToolbar #SelectAllButton:focus-visible,
+#devListToolbar #GroupActionButton:focus-visible {
   border-color: var(--mc-accent) !important;
   box-shadow: 0 0 0 3px var(--mc-accent-weak) !important;
 }
 
 /* =========================================================
-   Sidebar polish (left icon rail)
+   Device list container + cards
+   Targets: #xdevices div[name="xxdevice1"] table#devs .g1t .e2t .g2t .e1t
+   No :has(), no global table/td selectors.
    ========================================================= */
 
-#LeftMenu {
-  background: #f8fafd !important;
-  border-right: 1px solid var(--mc-border-soft) !important;
+#xdevices {
+  padding: 2px 0 12px 0 !important;
 }
 
-#LeftMenu a,
-#LeftMenu div {
-  border-radius: var(--mc-radius-sm) !important;
-  transition: background-color 0.14s ease, border-color 0.14s ease, box-shadow 0.14s ease;
-  border: 1px solid transparent !important;
+#xdevices div[name="xxdevice1"] {
+  margin: 0 0 10px 0 !important;
+  border: 1px solid var(--mc-border-soft) !important;
+  border-radius: var(--mc-radius-lg) !important;
+  background: var(--mc-bg-surface) !important;
+  box-shadow: 0 1px 1px rgba(15, 23, 42, 0.02) !important;
+  transition: border-color 0.16s ease, box-shadow 0.16s ease, transform 0.16s ease;
+  overflow: hidden !important;
 }
 
-#LeftMenu a:hover,
-#LeftMenu div:hover {
-  background: #f1f5fb !important;
-  border-color: #e0e7f3 !important;
+#xdevices div[name="xxdevice1"]:hover {
+  border-color: #d1d9e6 !important;
+  box-shadow: var(--mc-shadow-md) !important;
+  transform: translateY(-1px);
 }
 
-#LeftMenu .active,
-#LeftMenu a:focus-visible,
-#LeftMenu div:focus-visible {
-  background: #eef3ff !important;
-  border-color: #d8e3ff !important;
-  box-shadow: inset 0 0 0 1px #e2e9ff !important;
+#xdevices div[name="xxdevice1"] table#devs {
+  width: 100% !important;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  background: transparent !important;
+}
+
+#xdevices div[name="xxdevice1"] table#devs .g1t,
+#xdevices div[name="xxdevice1"] table#devs .e2t,
+#xdevices div[name="xxdevice1"] table#devs .g2t {
+  background: transparent !important;
+  border: 0 !important;
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+  vertical-align: middle !important;
+}
+
+#xdevices div[name="xxdevice1"] table#devs .g1t {
+  width: 34px !important;
+  min-width: 34px !important;
+  padding-left: 10px !important;
+  padding-right: 8px !important;
+  text-align: center !important;
+}
+
+#xdevices div[name="xxdevice1"] table#devs .e2t {
+  padding-left: 4px !important;
+  padding-right: 12px !important;
+}
+
+#xdevices div[name="xxdevice1"] table#devs .g2t {
+  width: 1% !important;
+  white-space: nowrap !important;
+  padding-right: 12px !important;
+}
+
+#xdevices div[name="xxdevice1"] table#devs .e1t {
+  display: block !important;
+  color: var(--mc-text-strong) !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  line-height: 1.35 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+/* Icon normalization for status + action icons, without assuming only .i2 */
+#xdevices div[name="xxdevice1"] table#devs div[class*="i"] {
+  border-radius: var(--mc-radius-pill) !important;
+}
+
+#xdevices div[name="xxdevice1"] table#devs div.i2,
+#xdevices div[name="xxdevice1"] table#devs div.i2.gray,
+#xdevices div[name="xxdevice1"] table#devs div.i2.green,
+#xdevices div[name="xxdevice1"] table#devs div.i2.red,
+#xdevices div[name="xxdevice1"] table#devs div.i2.orange,
+#xdevices div[name="xxdevice1"] table#devs div.i2.blue {
+  width: 10px !important;
+  min-width: 10px !important;
+  height: 10px !important;
+  min-height: 10px !important;
+  border: 1px solid #cbd5e1 !important;
+  box-sizing: border-box !important;
+}
+
+#xdevices div[name="xxdevice1"] table#devs div.i2.gray {
+  background: #cbd5e1 !important;
+}
+
+#xdevices div[name="xxdevice1"] table#devs div.i2.green {
+  background: #22c55e !important;
+  border-color: #16a34a !important;
+}
+
+#xdevices div[name="xxdevice1"] table#devs div.i2.red {
+  background: #ef4444 !important;
+  border-color: #dc2626 !important;
+}
+
+#xdevices div[name="xxdevice1"] table#devs div.i2.orange {
+  background: #f59e0b !important;
+  border-color: #d97706 !important;
+}
+
+#xdevices div[name="xxdevice1"] table#devs div.i2.blue {
+  background: #3b82f6 !important;
+  border-color: #2563eb !important;
 }
