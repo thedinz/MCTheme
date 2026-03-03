@@ -1,36 +1,36 @@
 /* =========================================================
-   MeshCentral Modern SaaS Theme
-   Clean / Neutral / Safe Layout Version
+   MCTheme - MeshCentral Modern SaaS Theme
+   Clean / Stable Version
    ========================================================= */
 
-/* ---------- Font (POC via Google) ---------- */
+/* ---------- Font ---------- */
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;650;700&display=swap");
 
-/* ---------- Design Tokens ---------- */
 :root{
   --accent: #5b8cff;
   --accentWeak: rgba(91,140,255,.16);
 
-  --text-dark: #111;
+  --text-dark: #0f172a;
   --text-light: #e7eaf0;
 
   --header-bg: #0f1217;
   --header-border: #222837;
 
-  --radius: 10px;
+  --card-border: #e7e9ee;
+
+  --radius: 12px;
 }
 
 /* =========================================================
-   Base Typography (Safe)
+   Base Typography
    ========================================================= */
 
 html, body{
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system,
-               Segoe UI, Roboto, Helvetica, Arial !important;
+  font-family: Inter, ui-sans-serif, system-ui,
+               -apple-system, Segoe UI, Roboto, Helvetica, Arial !important;
   letter-spacing: -0.01em;
 }
 
-/* Links */
 a{
   color: var(--accent) !important;
   text-decoration: none !important;
@@ -39,24 +39,21 @@ a:hover{
   text-decoration: underline !important;
 }
 
-/* Inputs */
 input, select, textarea{
   font-family: inherit !important;
-  border-radius: var(--radius) !important;
-  padding: 9px 11px !important;
+  border-radius: 10px !important;
+  padding: 8px 10px !important;
 }
 
-/* Buttons */
 button,
 input[type="button"],
 input[type="submit"]{
   font-family: inherit !important;
   font-weight: 600 !important;
-  border-radius: var(--radius) !important;
-  padding: 9px 12px !important;
+  border-radius: 10px !important;
+  padding: 8px 12px !important;
 }
 
-/* Modern focus ring */
 :focus{
   outline: none !important;
 }
@@ -65,12 +62,10 @@ input[type="submit"]{
 }
 
 /* =========================================================
-   Masthead (Top Header Bar)
+   Masthead (Top Bar)
    ========================================================= */
 
 #masthead{
-  position: relative !important;
-
   width: 100% !important;
   height: 56px !important;
 
@@ -79,7 +74,6 @@ input[type="submit"]{
 
   display: flex !important;
   align-items: center !important;
-  gap: 12px !important;
 
   background: var(--header-bg) !important;
   background-image: none !important;
@@ -89,16 +83,8 @@ input[type="submit"]{
   border-radius: 0 !important;
 
   box-shadow: none !important;
-  overflow: visible !important;
 }
 
-/* Remove inherited rounding/shadow */
-#masthead, #masthead *{
-  border-radius: 0 !important;
-  box-shadow: none !important;
-}
-
-/* Title */
 #masthead .title{
   color: var(--text-light) !important;
   font-size: 16px !important;
@@ -107,41 +93,25 @@ input[type="submit"]{
 
   margin: 0 !important;
   padding: 0 !important;
-  line-height: 1.2 !important;
   text-shadow: none !important;
-
-  display: inline-flex !important;
-  align-items: center !important;
 }
 
-/* Optional subtitle */
-#masthead .title2{
-  color: #a6adbb !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-/* Right side controls */
 #logoutControl{
   margin-left: auto !important;
-  padding: 0 !important;
-  position: static !important;
-  line-height: 1.2 !important;
   font-size: 13px !important;
   color: #a6adbb !important;
 }
 
-/* Header links */
 #masthead .LogoffLinkColor,
 #masthead .LogoffLinkColor a{
   color: #a6adbb !important;
   text-decoration: none !important;
 }
+
 #masthead .LogoffLinkColor a:hover{
   color: var(--text-light) !important;
 }
 
-/* Notification pill */
 #notificationCount{
   background: rgba(91,140,255,.18) !important;
   border: 1px solid rgba(91,140,255,.35) !important;
@@ -151,11 +121,98 @@ input[type="submit"]{
   font-weight: 650 !important;
 }
 
-/* Try new UI badge */
-#textnewui{
-  background: rgba(255,255,255,.04) !important;
-  border: 1px solid #222837 !important;
-  color: var(--text-light) !important;
+/* =========================================================
+   Device Rows -> Modern Card Style
+   ========================================================= */
+
+/* Row spacing */
+tbody tr td{
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+}
+
+/* Card background + border */
+tbody tr td[tabindex],
+tbody tr td.e2t,
+tbody tr td.g1t,
+tbody tr td.g2t{
+  background: #ffffff !important;
+  border-top: 1px solid var(--card-border) !important;
+  border-bottom: 1px solid var(--card-border) !important;
+}
+
+/* Left card edge */
+tbody tr td[tabindex]{
+  width: 26px !important;
+  padding-left: 12px !important;
+  padding-right: 6px !important;
+
+  border-left: 1px solid var(--card-border) !important;
+  border-top-left-radius: var(--radius) !important;
+  border-bottom-left-radius: var(--radius) !important;
+
+  vertical-align: middle !important;
+}
+
+/* Middle */
+tbody tr td.e2t{
+  padding-left: 10px !important;
+  padding-right: 14px !important;
+  vertical-align: middle !important;
+}
+
+/* Right card edge */
+tbody tr td.g2t{
+  border-right: 1px solid var(--card-border) !important;
+  border-top-right-radius: var(--radius) !important;
+  border-bottom-right-radius: var(--radius) !important;
+}
+
+/* Tighten gutters */
+td.g1t, td.g2t{
+  width: 10px !important;
+}
+
+/* Hover lift */
+tbody tr:hover td[tabindex],
+tbody tr:hover td.e2t,
+tbody tr:hover td.g1t,
+tbody tr:hover td.g2t{
+  border-color: rgba(91,140,255,.30) !important;
+  box-shadow: 0 8px 18px rgba(0,0,0,.08) !important;
+  transform: translateY(-1px);
+  transition: box-shadow .15s ease, transform .10s ease, border-color .15s ease;
+}
+
+/* Device name */
+td.e2t .e1t{
+  font-size: 14px !important;
+  font-weight: 650 !important;
+  color: var(--text-dark) !important;
+}
+
+/* Remove blank line under name */
+td.e2t > div:last-child{
+  display: none !important;
+}
+
+/* Status dot instead of giant square */
+div.i2{
+  width: 10px !important;
+  height: 10px !important;
   border-radius: 999px !important;
-  padding: 6px 10px !important;
+  border: 1px solid #d1d5db !important;
+  background: #e5e7eb !important;
+}
+
+/* Status colors */
+div.i2.gray{ background: #e5e7eb !important; }
+div.i2.green{ background: #22c55e !important; border-color: #16a34a !important; }
+div.i2.red{ background: #ef4444 !important; border-color: #dc2626 !important; }
+div.i2.orange{ background: #f59e0b !important; border-color: #d97706 !important; }
+div.i2.blue{ background: var(--accent) !important; border-color: var(--accent) !important; }
+
+/* Force override inline width */
+div.i2[style*="width"]{
+  width: 10px !important;
 }
