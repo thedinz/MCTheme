@@ -17,8 +17,10 @@
   --header-border: #222837;
 
   --card-border: #e7e9ee;
+  --card-hover-border: #d9deea;
+  --card-hover-shadow: 0 4px 12px rgba(15, 23, 42, .08);
 
-  --radius: 12px;
+  --radius: 10px;
 }
 
 /* =========================================================
@@ -123,96 +125,129 @@ input[type="submit"]{
 
 /* =========================================================
    Device Rows -> Modern Card Style
+   Targeted selectors only (preserve MeshCentral table layout)
    ========================================================= */
 
-/* Row spacing */
-tbody tr td{
-  padding-top: 8px !important;
-  padding-bottom: 8px !important;
-}
-
-/* Card background + border */
 tbody tr td[tabindex],
 tbody tr td.e2t,
 tbody tr td.g1t,
 tbody tr td.g2t{
-  background: #ffffff !important;
+  padding-top: 6px !important;
+  padding-bottom: 6px !important;
+  background: #fff !important;
   border-top: 1px solid var(--card-border) !important;
   border-bottom: 1px solid var(--card-border) !important;
+  vertical-align: middle !important;
+  transition: border-color .14s ease, box-shadow .14s ease;
 }
 
-/* Left card edge */
+/* First card segment: compact status column */
 tbody tr td[tabindex]{
   width: 26px !important;
-  padding-left: 12px !important;
+  min-width: 26px !important;
+  max-width: 26px !important;
+  padding-left: 8px !important;
   padding-right: 6px !important;
 
   border-left: 1px solid var(--card-border) !important;
   border-top-left-radius: var(--radius) !important;
   border-bottom-left-radius: var(--radius) !important;
 
-  vertical-align: middle !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
-/* Middle */
+/* Main name/content segment */
 tbody tr td.e2t{
-  padding-left: 10px !important;
-  padding-right: 14px !important;
-  vertical-align: middle !important;
+  padding-left: 8px !important;
+  padding-right: 10px !important;
 }
 
-/* Right card edge */
-tbody tr td.g2t{
+td.e2t .e1t{
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  color: var(--text-dark) !important;
+  line-height: 1.2 !important;
+}
+
+/* Keep the empty spacer div from adding card height */
+td.e2t > div:last-child{
+  display: none !important;
+}
+
+/* trailing table segments */
+td.g1t,
+td.g2t{
+  width: 8px !important;
+  min-width: 8px !important;
+  max-width: 8px !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+td.g2t{
   border-right: 1px solid var(--card-border) !important;
   border-top-right-radius: var(--radius) !important;
   border-bottom-right-radius: var(--radius) !important;
 }
 
-/* Tighten gutters */
-td.g1t, td.g2t{
-  width: 10px !important;
-}
-
-/* Hover lift */
+/* Subtle hover state without layout shifting */
 tbody tr:hover td[tabindex],
 tbody tr:hover td.e2t,
 tbody tr:hover td.g1t,
 tbody tr:hover td.g2t{
-  border-color: rgba(91,140,255,.30) !important;
-  box-shadow: 0 8px 18px rgba(0,0,0,.08) !important;
-  transform: translateY(-1px);
-  transition: box-shadow .15s ease, transform .10s ease, border-color .15s ease;
+  border-color: var(--card-hover-border) !important;
+  box-shadow: var(--card-hover-shadow) !important;
 }
 
-/* Device name */
-td.e2t .e1t{
-  font-size: 14px !important;
-  font-weight: 650 !important;
-  color: var(--text-dark) !important;
-}
-
-/* Remove blank line under name */
-td.e2t > div:last-child{
-  display: none !important;
-}
-
-/* Status dot instead of giant square */
-div.i2{
+/* Status dot (override inline width/height from MeshCentral) */
+div.i2,
+div.i2.gray,
+div.i2.green,
+div.i2.red,
+div.i2.orange,
+div.i2.blue{
   width: 10px !important;
+  min-width: 10px !important;
+  max-width: 10px !important;
   height: 10px !important;
+  min-height: 10px !important;
+  max-height: 10px !important;
+  margin: 0 !important;
   border-radius: 999px !important;
   border: 1px solid #d1d5db !important;
+  box-sizing: border-box !important;
   background: #e5e7eb !important;
 }
 
-/* Status colors */
 div.i2.gray{ background: #e5e7eb !important; }
 div.i2.green{ background: #22c55e !important; border-color: #16a34a !important; }
 div.i2.red{ background: #ef4444 !important; border-color: #dc2626 !important; }
 div.i2.orange{ background: #f59e0b !important; border-color: #d97706 !important; }
 div.i2.blue{ background: var(--accent) !important; border-color: var(--accent) !important; }
 
-/* Force override inline width */
-div.i2[style*="width"]{
+/* Force override inline style attributes produced by MeshCentral */
+div.i2[style*="width"],
+div.i2[style*="height"]{
   width: 10px !important;
+  height: 10px !important;
+}
+
+/* =========================================================
+   Optional light polish: control/filter bar + left nav hover
+   ========================================================= */
+
+#p5toolbar,
+#p13toolbar{
+  background: #fff !important;
+  border: 1px solid #eceff5 !important;
+  border-radius: 10px !important;
+  padding: 8px 10px !important;
+}
+
+#LeftMenu a:hover,
+#LeftMenu div:hover{
+  background: #f5f8ff !important;
+  border-radius: 8px !important;
 }
