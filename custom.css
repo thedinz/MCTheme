@@ -1,19 +1,20 @@
 /* =========================================================
    MCTheme - Linear/Vercel-inspired MeshCentral theme
-   Scoped to uploaded DOM targets only
    ========================================================= */
 
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
 
+/* =========================================================
+   1) tokens
+   ========================================================= */
 :root {
-  --mc-accent: #4f46e5;
-  --mc-accent-weak: rgba(79, 70, 229, 0.16);
-  --mc-accent-border: rgba(79, 70, 229, 0.34);
+  --mc-accent: #3b82f6;
+  --mc-accent-weak: rgba(59, 130, 246, 0.16);
+  --mc-accent-border: rgba(59, 130, 246, 0.3);
 
   --mc-text-strong: #0f172a;
   --mc-text: #334155;
   --mc-text-muted: #64748b;
-  --mc-text-on-dark: #e5e7eb;
 
   --mc-bg-page: #f8fafc;
   --mc-bg-surface: #ffffff;
@@ -23,53 +24,31 @@
   --mc-border-soft: #e2e8f0;
   --mc-border-strong: #cbd5e1;
 
-  --mc-header-bg: #0b0d12;
+  --mc-header-bg: #0b1220;
   --mc-header-border: #1f2937;
 
   --mc-shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
-  --mc-shadow-md: 0 10px 24px rgba(15, 23, 42, 0.08);
+  --mc-shadow-md: 0 10px 24px rgba(15, 23, 42, 0.1);
 
   --mc-radius-sm: 8px;
-  --mc-radius-md: 12px;
+  --mc-radius-md: 10px;
   --mc-radius-lg: 14px;
   --mc-radius-pill: 999px;
 
   --mc-space-1: 8px;
   --mc-space-2: 12px;
   --mc-space-3: 16px;
-  --mc-space-4: 20px;
 
   --mc-control-h: 34px;
 }
 
 /* =========================================================
-   Page + type baseline (safe)
+   2) masthead
+   Targets: #masthead, .title, .title2, #notificationCount, #logoutControl
    ========================================================= */
-
-html,
-body {
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
-  background: var(--mc-bg-page) !important;
-  color: var(--mc-text) !important;
-  letter-spacing: -0.01em;
-}
-
-:focus {
-  outline: none !important;
-}
-
-:focus-visible {
-  box-shadow: 0 0 0 3px var(--mc-accent-weak) !important;
-}
-
-/* =========================================================
-   Masthead targets: #masthead .title #notificationCount #logoutControl
-   ========================================================= */
-
 #masthead {
   min-height: 56px !important;
   height: auto !important;
-  margin: 0 !important;
   padding: 0 var(--mc-space-3) !important;
   display: flex !important;
   align-items: center !important;
@@ -78,41 +57,34 @@ body {
   border: 0 !important;
   border-bottom: 1px solid var(--mc-header-border) !important;
   box-shadow: none !important;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
 }
 
-#masthead .title {
-  display: flex !important;
-  align-items: center !important;
-  min-height: 56px !important;
+#masthead .title,
+#masthead .title2 {
   color: #f8fafc !important;
   font-size: 15px !important;
   font-weight: 600 !important;
   letter-spacing: -0.02em !important;
   text-shadow: none !important;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
 }
 
 #notificationCount {
-  margin-left: var(--mc-space-1) !important;
   border-radius: var(--mc-radius-pill) !important;
   border: 1px solid var(--mc-accent-border) !important;
   background: var(--mc-accent-weak) !important;
-  color: var(--mc-text-on-dark) !important;
+  color: #e2e8f0 !important;
   font-weight: 600 !important;
   padding: 3px 10px !important;
 }
 
-#logoutControl {
-  margin-left: auto !important;
-  color: #94a3b8 !important;
-  font-size: 13px !important;
-  white-space: nowrap !important;
-  overflow: visible !important;
-}
-
+#logoutControl,
 #logoutControl a,
 #logoutControl .LogoffLinkColor {
   color: #94a3b8 !important;
   text-decoration: none !important;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
 }
 
 #logoutControl a:hover,
@@ -121,13 +93,23 @@ body {
 }
 
 /* =========================================================
-   Left sidebar targets: #page_leftbar .lbbutton .lbbuttonsel2 + known IDs
+   3) sidebar
+   Targets: #page_leftbar, .lbbutton, .lbbuttonsel2, .lbtg, LeftMenu IDs
    ========================================================= */
-
 #page_leftbar {
+  width: 212px !important;
+  min-width: 212px !important;
   background: #f8fafc !important;
   border-right: 1px solid var(--mc-border-soft) !important;
-  padding: var(--mc-space-2) !important;
+  padding: 8px !important;
+  box-sizing: border-box !important;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+}
+
+#page_leftbar .lbtg {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
 }
 
 #page_leftbar .lbbutton,
@@ -138,14 +120,20 @@ body {
 #page_leftbar #LeftMenuMyFiles,
 #page_leftbar #LeftMenuMyUsers,
 #page_leftbar #LeftMenuMyServer {
+  width: 100% !important;
   display: block !important;
+  box-sizing: border-box !important;
+  margin: 0 0 6px 0 !important;
+  padding: 8px 10px !important;
   border-radius: var(--mc-radius-md) !important;
   border: 1px solid transparent !important;
-  margin-bottom: 6px !important;
-  padding: 8px 10px !important;
-  color: var(--mc-text) !important;
   background: transparent !important;
-  transition: background-color 0.14s ease, border-color 0.14s ease, box-shadow 0.14s ease, transform 0.14s ease;
+  color: var(--mc-text) !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  line-height: 1.2 !important;
+  text-shadow: none !important;
+  transition: background-color 0.14s ease, border-color 0.14s ease, color 0.14s ease;
 }
 
 #page_leftbar .lbbutton:hover,
@@ -155,49 +143,55 @@ body {
 #page_leftbar #LeftMenuMyFiles:hover,
 #page_leftbar #LeftMenuMyUsers:hover,
 #page_leftbar #LeftMenuMyServer:hover {
-  background: #eef2ff !important;
-  border-color: #dbe3ff !important;
+  background: #eef4ff !important;
+  border-color: #d9e7ff !important;
   color: var(--mc-text-strong) !important;
-  transform: translateY(-1px);
 }
 
 #page_leftbar .lbbuttonsel2,
 #page_leftbar .lbbuttonsel2:hover {
-  background: #e0e7ff !important;
-  border-color: #c7d2fe !important;
-  color: #1e1b4b !important;
-  box-shadow: inset 0 0 0 1px rgba(99, 102, 241, 0.14) !important;
+  background: #e8f1ff !important;
+  border-color: #bfdbfe !important;
+  color: #1e3a8a !important;
+  box-shadow: inset 0 0 0 1px rgba(59, 130, 246, 0.18) !important;
 }
 
 /* =========================================================
-   Devices toolbar targets: #devListToolbarSpan #devListToolbar and controls
+   4) toolbar
+   Targets: #p1title, #devListToolbarSpan, #devListToolbar, view selectors
    ========================================================= */
+#p1title {
+  color: var(--mc-text-strong) !important;
+  font-weight: 650 !important;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+}
 
 #devListToolbarSpan {
   display: flex !important;
   align-items: center !important;
   flex-wrap: wrap !important;
-  gap: var(--mc-space-1) !important;
-  margin: 0 0 var(--mc-space-3) 0 !important;
+  gap: 10px !important;
+  margin: 0 0 14px 0 !important;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
 }
 
 #devListToolbarSpan > table,
-#devListToolbarSpan > table tr,
-#devListToolbarSpan > table td,
+#devListToolbarSpan > table > tbody > tr > td,
 #devListToolbarSpan > div {
   background: transparent !important;
+  border: 0 !important;
   box-shadow: none !important;
 }
 
 #devListToolbar {
   display: flex !important;
-  flex-wrap: wrap !important;
   align-items: center !important;
-  gap: var(--mc-space-1) !important;
-  padding: var(--mc-space-1) var(--mc-space-2) !important;
-  background: var(--mc-bg-surface) !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  padding: 8px !important;
   border: 1px solid var(--mc-border-soft) !important;
-  border-radius: var(--mc-radius-pill) !important;
+  border-radius: 12px !important;
+  background: var(--mc-bg-surface) !important;
   box-shadow: var(--mc-shadow-sm) !important;
 }
 
@@ -205,27 +199,34 @@ body {
 #devListToolbar #GroupActionButton,
 #devListToolbar #SearchInput,
 #devListToolbar #DevFilterSelect,
-#devListToolbar #RealNameCheckBox,
-#devListToolbar button,
 #devListToolbar input[type="button"],
 #devListToolbar input[type="submit"],
 #devListToolbar input[type="text"],
-#devListToolbar select {
+#devListToolbar select,
+#devListToolbar button,
+#devListToolbarViewIcons .viewSelector,
+#devListToolbarViewIcons .viewSelectorSel,
+#devViewButton1,
+#devViewButton2,
+#devViewButton3,
+#devViewButton4,
+#devViewButton5 {
   height: var(--mc-control-h) !important;
   box-sizing: border-box !important;
-  border-radius: var(--mc-radius-pill) !important;
   border: 1px solid var(--mc-border-strong) !important;
-  background: #ffffff !important;
+  border-radius: var(--mc-radius-md) !important;
+  background: #fff !important;
   color: var(--mc-text-strong) !important;
   font-size: 13px !important;
   font-weight: 500 !important;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
 }
 
 #devListToolbar #SelectAllButton,
 #devListToolbar #GroupActionButton,
-#devListToolbar button,
 #devListToolbar input[type="button"],
-#devListToolbar input[type="submit"] {
+#devListToolbar input[type="submit"],
+#devListToolbar button {
   padding: 0 12px !important;
 }
 
@@ -244,54 +245,48 @@ body {
   padding: 0 30px 0 10px !important;
 }
 
-#devListToolbarSpan select,
-#devListToolbarSpan input[type="text"],
-#devListToolbarSpan input[type="button"],
-#devListToolbarSpan input[type="submit"],
-#devListToolbarSpan button {
-  height: var(--mc-control-h) !important;
-  box-sizing: border-box !important;
-  border-radius: var(--mc-radius-pill) !important;
-  border: 1px solid var(--mc-border-strong) !important;
-  background: #ffffff !important;
-  color: var(--mc-text-strong) !important;
-  font-size: 13px !important;
-  font-weight: 500 !important;
-}
-
 #devListToolbar #RealNameCheckBox {
   width: 16px !important;
   min-width: 16px !important;
   height: 16px !important;
   border-radius: 4px !important;
-  padding: 0 !important;
+  border: 1px solid var(--mc-border-strong) !important;
 }
 
 #devListToolbar #SelectAllButton:hover,
 #devListToolbar #GroupActionButton:hover,
-#devListToolbar button:hover,
 #devListToolbar input[type="button"]:hover,
-#devListToolbar input[type="submit"]:hover {
+#devListToolbar input[type="submit"]:hover,
+#devListToolbar button:hover,
+#devListToolbarViewIcons .viewSelector:hover,
+#devViewButton1:hover,
+#devViewButton2:hover,
+#devViewButton3:hover,
+#devViewButton4:hover,
+#devViewButton5:hover {
   background: var(--mc-bg-subtle) !important;
-  border-color: #b9c5d6 !important;
+  border-color: #b8c4d6 !important;
 }
 
-#devListToolbar #SearchInput:focus-visible,
-#devListToolbar #DevFilterSelect:focus-visible,
-#devListToolbar #SelectAllButton:focus-visible,
-#devListToolbar #GroupActionButton:focus-visible {
-  border-color: var(--mc-accent) !important;
-  box-shadow: 0 0 0 3px var(--mc-accent-weak) !important;
+#devListToolbarViewIcons .viewSelectorSel,
+#devViewButton1.viewSelectorSel,
+#devViewButton2.viewSelectorSel,
+#devViewButton3.viewSelectorSel,
+#devViewButton4.viewSelectorSel,
+#devViewButton5.viewSelectorSel {
+  background: #e8f1ff !important;
+  border-color: #bfdbfe !important;
+  color: #1e3a8a !important;
+  box-shadow: inset 0 0 0 1px rgba(59, 130, 246, 0.18) !important;
 }
 
 /* =========================================================
-   Device list container + cards
-   Targets: #xdevices div[name="xxdevice1"] table#devs .g1t .e2t .g2t .e1t
-   No :has(), no global table/td selectors.
+   5) device cards
+   Targets: #xdevices, div[name="xxdevice1"], table#devs + g1t/e2t/g2t/e1t
    ========================================================= */
-
 #xdevices {
   padding: 2px 0 12px 0 !important;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
 }
 
 #xdevices div[name="xxdevice1"] {
@@ -299,13 +294,12 @@ body {
   border: 1px solid var(--mc-border-soft) !important;
   border-radius: var(--mc-radius-lg) !important;
   background: var(--mc-bg-surface) !important;
-  box-shadow: 0 1px 1px rgba(15, 23, 42, 0.02) !important;
   transition: border-color 0.16s ease, box-shadow 0.16s ease, transform 0.16s ease;
   overflow: hidden !important;
 }
 
 #xdevices div[name="xxdevice1"]:hover {
-  border-color: #d1d9e6 !important;
+  border-color: #d5deea !important;
   box-shadow: var(--mc-shadow-md) !important;
   transform: translateY(-1px);
 }
@@ -322,22 +316,22 @@ body {
 #xdevices div[name="xxdevice1"] table#devs .g2t {
   background: transparent !important;
   border: 0 !important;
+  vertical-align: middle !important;
   padding-top: 10px !important;
   padding-bottom: 10px !important;
-  vertical-align: middle !important;
 }
 
 #xdevices div[name="xxdevice1"] table#devs .g1t {
-  width: 34px !important;
-  min-width: 34px !important;
-  padding-left: 10px !important;
+  width: 38px !important;
+  min-width: 38px !important;
+  padding-left: 12px !important;
   padding-right: 8px !important;
   text-align: center !important;
 }
 
 #xdevices div[name="xxdevice1"] table#devs .e2t {
-  padding-left: 4px !important;
-  padding-right: 12px !important;
+  padding-left: 6px !important;
+  padding-right: 10px !important;
 }
 
 #xdevices div[name="xxdevice1"] table#devs .g2t {
@@ -357,9 +351,9 @@ body {
   text-overflow: ellipsis !important;
 }
 
-/* Icon normalization for status + action icons, without assuming only .i2 */
-#xdevices div[name="xxdevice1"] table#devs div[class*="i"] {
-  border-radius: var(--mc-radius-pill) !important;
+#xdevices div[name="xxdevice1"] table#devs input[type="checkbox"] {
+  margin: 0 !important;
+  vertical-align: middle !important;
 }
 
 #xdevices div[name="xxdevice1"] table#devs div.i2,
@@ -372,30 +366,21 @@ body {
   min-width: 10px !important;
   height: 10px !important;
   min-height: 10px !important;
+  border-radius: 999px !important;
   border: 1px solid #cbd5e1 !important;
   box-sizing: border-box !important;
 }
 
-#xdevices div[name="xxdevice1"] table#devs div.i2.gray {
-  background: #cbd5e1 !important;
-}
+#xdevices div[name="xxdevice1"] table#devs div.i2.gray { background: #cbd5e1 !important; }
+#xdevices div[name="xxdevice1"] table#devs div.i2.green { background: #22c55e !important; border-color: #16a34a !important; }
+#xdevices div[name="xxdevice1"] table#devs div.i2.red { background: #ef4444 !important; border-color: #dc2626 !important; }
+#xdevices div[name="xxdevice1"] table#devs div.i2.orange { background: #f59e0b !important; border-color: #d97706 !important; }
+#xdevices div[name="xxdevice1"] table#devs div.i2.blue { background: #3b82f6 !important; border-color: #2563eb !important; }
 
-#xdevices div[name="xxdevice1"] table#devs div.i2.green {
-  background: #22c55e !important;
-  border-color: #16a34a !important;
-}
-
-#xdevices div[name="xxdevice1"] table#devs div.i2.red {
-  background: #ef4444 !important;
-  border-color: #dc2626 !important;
-}
-
-#xdevices div[name="xxdevice1"] table#devs div.i2.orange {
-  background: #f59e0b !important;
-  border-color: #d97706 !important;
-}
-
-#xdevices div[name="xxdevice1"] table#devs div.i2.blue {
-  background: #3b82f6 !important;
-  border-color: #2563eb !important;
+/* keep OS/device icon proportions untouched */
+#xdevices div[name="xxdevice1"] table#devs .e2t img,
+#xdevices div[name="xxdevice1"] table#devs .g2t img {
+  max-width: none !important;
+  max-height: none !important;
+  object-fit: contain !important;
 }
